@@ -6,6 +6,10 @@
   "bin": {
     "gendiff": "dist/bin/gendiff.js"
   },
+  "keywords": [
+    "hexlet",
+    "gendiff"
+  ],
   "engines": {
     "node": ">=8"
   },
