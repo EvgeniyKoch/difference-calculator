@@ -39,7 +39,7 @@ jobs:
             - uses: actions/setup-node@master
               with:
                   node-version: '12'
-            - run: npm install -g yarn
+            - run: npm install -g npm
             - run: npm install
             - run: npm build
             - uses: paambaati/codeclimate-action@v2.2.4
