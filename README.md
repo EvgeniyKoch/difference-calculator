@@ -1,5 +1,5 @@
 # Проект Вычислитель отличий 
-[![Maintainability](https://api.codeclimate.com/v1/badges/eac5ac9826a6852cf914/maintainability)](https://codeclimate.com/github/EvgeniyKoch/frontend-project-lvl2/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/eac5ac9826a6852cf914/test_coverage)](https://codeclimate.com/github/EvgeniyKoch/frontend-project-lvl2/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/eac5ac9826a6852cf914/maintainability)](https://codeclimate.com/github/EvgeniyKoch/frontend-project-lvl2/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/eac5ac9826a6852cf914/test_coverage)](https://codeclimate.com/github/EvgeniyKoch/frontend-project-lvl2/test_coverage)
 
 ## Описание
 В рамках данного проекта реализована утилита для поиска отличий в конфигурационных файлах.
