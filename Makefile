@@ -4,7 +4,7 @@ run:
 	npx babel-node 'src/bin/gendiff.js'
 
 install-deps:
-	npm ci
+	npm install
 
 build:
 	rm -rf dist
