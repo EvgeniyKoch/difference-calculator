@@ -46,7 +46,7 @@ describe('getJsonDataToObjectFormat reads, searches for data by file name and re
   );
 
   test('should return null when incorrect file name', () => {
-    const incorrectFileName = 'test.json';
+    const incorrectFileName = '_tests_.json';
 
     expect(getJsonDataToObjectFormat(incorrectFileName)).toBeNull();
   });
