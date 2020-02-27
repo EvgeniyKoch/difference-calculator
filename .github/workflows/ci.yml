@@ -46,4 +46,4 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ee12173e16131b52cab25c5ecbbe9087535b0efa3ba332e1cc5d867993f5ef2c
               with:
-                  coverageCommand: npm coverage
+                  coverageCommand: npm run coverage
