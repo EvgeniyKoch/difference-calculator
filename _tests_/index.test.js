@@ -1,6 +1,6 @@
 import {
-  getJsonDataToObjectFormat,
-  getFilesDifferenceJsonInObject,
+  getDataToObjectFormat,
+  getFilesDifference,
   toStringObj,
 } from '../src';
 
@@ -41,14 +41,14 @@ describe('getJsonDataToObjectFormat reads, searches for data by file name and re
     [pathToFile2, objectPathToFile2],
   ])(
     'should return object when file name is correct', (path, exp) => {
-      expect(getJsonDataToObjectFormat(path)).toEqual(exp);
+      expect(getDataToObjectFormat(path)).toEqual(exp);
     },
   );
 
   test('should return null when incorrect file name', () => {
     const incorrectFileName = '_tests_.json';
 
-    expect(getJsonDataToObjectFormat(incorrectFileName)).toBeNull();
+    expect(getDataToObjectFormat(incorrectFileName)).toBeNull();
   });
 });
 
@@ -64,7 +64,7 @@ describe('getFilesDifferenceJsonInObject compare two objects and returns an obje
     [{ name: 'test' }, { value: 'test' }, { '- name': 'test', '+ value': 'test' }],
   ])(
     'should return difference object', (obj1, obj2, exp) => {
-      expect(getFilesDifferenceJsonInObject(obj1, obj2)).toEqual(exp);
+      expect(getFilesDifference(obj1, obj2)).toEqual(exp);
     },
   );
 });

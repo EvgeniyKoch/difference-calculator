@@ -1,6 +1,6 @@
 {
   "name": "diffe-calcu",
-  "version": "1.0.0",
+  "version": "1.2.3",
   "description": "Difference Calculator",
   "main": "dist/index.js",
   "bin": {
@@ -12,7 +12,7 @@
     "github action"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=13"
   },
   "files": [
     "dist"
@@ -37,6 +37,9 @@
   "homepage": "https://github.com/EvgeniyKoch/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^3.0.0",
+    "esprima": "^4.0.1",
+    "ini": "^1.3.5",
+    "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
     "source-map-support": "^0.5.10"
   },
