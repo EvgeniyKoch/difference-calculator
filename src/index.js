@@ -1,9 +1,6 @@
-import createAstTree from './parsers';
+import createAstTree from './crerate-ast-tree';
 import getDataToObjectFormat from './utils';
-
-export const toStringObj = obj => Object.keys(obj)
-  .map(key => `${[key]}: ${obj[key]}`)
-  .join('\n');
+import render from './render';
 
 export default (pathToFile1, pathToFile2) => {
   const fileBefore = getDataToObjectFormat(pathToFile1);
@@ -15,9 +12,8 @@ export default (pathToFile1, pathToFile2) => {
     return;
   }
 
-  // const diffObj = getFilesDifference(fileBefore, fileAfter);
-  console.log(createAstTree(fileBefore, fileAfter), 'getFilesDifference(fileBefore, fileAfter)');
-  // const result = toStringObj(diffObj);
+  const diffObj = createAstTree(fileBefore, fileAfter)
+    |> render;
 
-  console.log('index.js');
+  console.log(`{\n${diffObj}\n}`);
 };

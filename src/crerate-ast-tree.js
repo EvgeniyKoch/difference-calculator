@@ -7,7 +7,7 @@ const propertyActions = [
     process: (value1, value2, func) => ({ children: func(value1, value2) }),
   },
   {
-    type: 'notChanged',
+    type: 'unchanged',
     check: (data1, data2, key) => (has(data1, key) && has(data2, key) && (data1[key] === data2[key])),
     process: value => ({ value }),
   },
@@ -17,7 +17,7 @@ const propertyActions = [
     process: (valueBefore, valueAfter) => ({ valueBefore, valueAfter }),
   },
   {
-    type: 'deleted',
+    type: 'removed',
     check: (data1, data2, key) => (has(data1, key) && !has(data2, key)),
     process: value => ({ value }),
   },
