@@ -1,15 +1,10 @@
 import render from './render';
-import renderPlain from './renderPlain';
+import renderPlain from './renderPlainOutput';
 
-// eslint-disable-next-line consistent-return
-const formattersFactory = (ast, format) => {
-  switch (format) {
-    case 'plain':
-      renderPlain(ast);
-      break;
-    default:
-      return render(ast);
-  }
+const formatter = {
+  plain: renderPlain,
+  json: console.warn,
+  default: render,
 };
 
-export default formattersFactory;
+export default (ast, format) => formatter[format](ast);

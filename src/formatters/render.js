@@ -9,7 +9,7 @@ const stringify = (value, depth = 2) => {
     .map(key => `{\n${ident(depth + 2)}${key}: ${value[key]} \n${ident(depth)}}`);
 };
 
-const renderActions = {
+const renderMapping = {
   parent: ({ key, children }, depth, func) => (
     `${ident(depth + 1)}${key}: {\n${func(children, depth + 2)}\n${ident(depth + 1)}}`
   ),
@@ -22,10 +22,10 @@ const renderActions = {
   unchanged: ({ key, value }, depth) => `${ident(depth + 1)}${key}: ${stringify(value)}`,
 };
 
-const render = (ast) => {
-  const iter = (tree, depth = 1) => tree.map(node => renderActions[node.type](node, depth, iter)).join('\n');
+export default (ast) => {
+  const iter = (tree, depth = 1) => (
+    tree.map(node => renderMapping[node.type](node, depth, iter)).join('\n')
+  );
 
   return `{\n${iter(ast)}\n}`;
 };
-
-export default render;
