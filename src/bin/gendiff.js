@@ -9,7 +9,9 @@ program
   .description('Compares two configuration files and shows a difference.')
   .option('-f, --format [type]', 'Output format', 'default')
   .arguments('<firstConfig> <secondConfig>')
-  .action((firstConfig, secondConfig, { format }) => genDiff(firstConfig, secondConfig, format))
+  .action((firstConfig, secondConfig, { format }) => (
+    console.log(genDiff(firstConfig, secondConfig, format))
+  ))
   .parse(process.argv);
 
 if (!program.args.length) {

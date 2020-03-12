@@ -1,4 +1,5 @@
 import path from 'path';
+
 import createAst from './crerate-ast';
 import getDataToObjectFormat from './utils';
 import formattersFactory from './formatters';
@@ -15,10 +16,10 @@ export default (pathToFile1, pathToFile2, format) => {
 
   if (!fileBefore || !fileAfter) {
     console.warn('There is nothing compare!');
-    return;
+    return null;
   }
 
   const ast = createAst(fileBefore, fileAfter);
-  const result = formattersFactory(ast, format);
-  console.log(result);
+
+  return formattersFactory(ast, format);
 };

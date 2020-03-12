@@ -8,7 +8,7 @@ const readFile = filename => fs.readFileSync(getFixturePath(filename), 'utf8');
 
 const parsers = {
   '.json': JSON.parse,
-  '.yaml': yaml.safeLoad,
+  '.yml': yaml.safeLoad,
   '.ini': ini.parse,
 };
 
@@ -26,3 +26,5 @@ export default (filepath) => {
 
   return parsers[extension](dataFile);
 };
+
+export { getFixturePath, readFile };

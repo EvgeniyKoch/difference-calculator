@@ -18,8 +18,10 @@ export default (ast) => {
     return [...acc, renderPlainMapping[node.type](path, node, iter)];
   }, []);
 
-  return iter(ast, [])
+  const result = iter(ast, [])
     .flat(Infinity)
     .filter(Boolean)
     .join('\n');
+
+  return `${result}\n`;
 };

@@ -3,7 +3,7 @@ import renderPlain from './renderPlainOutput';
 
 const formatter = {
   plain: renderPlain,
-  json: console.warn,
+  json: JSON.stringify,
   default: render,
 };
 
