@@ -1,22 +1,24 @@
+import fs from 'fs';
 import path from 'path';
 
 import createAst from './crerate-ast';
-import getDataToObjectFormat from './utils';
+import getParser from './parser';
 import formattersFactory from './formatters';
+
+const getFixturePath = filename => path.join(__dirname, '..', 'fixtures', filename);
+const readFile = filename => fs.readFileSync(getFixturePath(filename), 'utf8');
 
 export default (pathToFile1, pathToFile2, format) => {
   const [ext1, ext2] = [pathToFile1, pathToFile2].map(path.extname);
 
-  if (ext1 !== ext2) {
-    console.log('You are comparing different file formats!\n');
-  }
+  const fileBefore = readFile(pathToFile1)
+    |> (_ => getParser(_, ext1));
 
-  const fileBefore = getDataToObjectFormat(pathToFile1);
-  const fileAfter = getDataToObjectFormat(pathToFile2);
+  const fileAfter = readFile(pathToFile2)
+    |> (_ => getParser(_, ext2));
 
   if (!fileBefore || !fileAfter) {
-    console.warn('There is nothing compare!');
-    return null;
+    throw new Error('There is nothing compare!');
   }
 
   const ast = createAst(fileBefore, fileAfter);

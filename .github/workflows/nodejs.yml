@@ -1,37 +1,37 @@
 name: Node.js CI
 
 on:
-    - push
-    - pull_request
+  - push
+  - pull_request
 
 jobs:
-    build:
+  build:
 
-        runs-on: macOS-latest
+    runs-on: macOS-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+      node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v1
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: npm install, build
-              run: |
-                  make install
-                  make build
-              env:
-                  CI: true
-            - name: Run linter
-              run: |
-                  make lint
-            - name: Test & publish code coverage
-              uses: paambaati/codeclimate-action@v2.4.0
-              env:
-                  CC_TEST_REPORTER_ID: e17f1d4fe4afb813a886f797aeb0078bd7d63c9c70e595c0d962db06d67a4628
-              with:
-                  coverageCommand: make test-coverage
-                  debug: true
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build
+        run: |
+          make install
+          make build
+        env:
+          CI: true
+      - name: Run linter
+        run: |
+          make lint
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CC_TEST_REPORTER_ID: e17f1d4fe4afb813a886f797aeb0078bd7d63c9c70e595c0d962db06d67a4628
+        with:
+          coverageCommand: make test-coverage
+          debug: true
