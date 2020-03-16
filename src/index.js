@@ -5,8 +5,14 @@ import createAst from './crerate-ast';
 import getParser from './parser';
 import formattersFactory from './formatters';
 
-const getFixturePath = filename => path.join(__dirname, '..', 'fixtures', filename);
-const readFile = filename => fs.readFileSync(getFixturePath(filename), 'utf8');
+const readFile = (filename) => {
+  const fullPath1 = path.join(__dirname, '..', 'fixtures', filename);
+  try {
+    return fs.readFileSync(fullPath1, 'utf-8');
+  } catch (e) {
+    throw new Error(`Invalid file name \n ${e.message}`);
+  }
+};
 
 export default (pathToFile1, pathToFile2, format) => {
   const [ext1, ext2] = [pathToFile1, pathToFile2].map(path.extname);
