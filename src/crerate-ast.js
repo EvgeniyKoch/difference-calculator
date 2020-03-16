@@ -30,14 +30,14 @@ const propertyActions = [
 
 const getPropertyAction = (data1, data2, key) => propertyActions.find(({ check }) => check(data1, data2, key));
 
-const createAstTree = (fileBefore = {}, fileAfter = {}) => {
+const createAst = (fileBefore = {}, fileAfter = {}) => {
   const keys = Object.keys({ ...fileBefore, ...fileAfter });
 
   return keys.map((key) => {
     const { type, process } = getPropertyAction(fileBefore, fileAfter, key);
 
-    return { key, type, ...process(fileBefore[key], fileAfter[key], createAstTree) };
+    return { key, type, ...process(fileBefore[key], fileAfter[key], createAst) };
   });
 };
 
-export default createAstTree;
+export default createAst;

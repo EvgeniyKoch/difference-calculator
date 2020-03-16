@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import createAst from './crerate-ast';
-import getParser from './parser';
+import parser from './parser';
 import formattersFactory from './formatters';
 
 const readFile = (filename) => {
@@ -18,10 +18,10 @@ export default (pathToFile1, pathToFile2, format) => {
   const [ext1, ext2] = [pathToFile1, pathToFile2].map(path.extname);
 
   const fileBefore = readFile(pathToFile1)
-    |> (_ => getParser(_, ext1));
+    |> (_ => parser(_, ext1));
 
   const fileAfter = readFile(pathToFile2)
-    |> (_ => getParser(_, ext2));
+    |> (_ => parser(_, ext2));
 
   if (!fileBefore || !fileAfter) {
     throw new Error('There is nothing compare!');
