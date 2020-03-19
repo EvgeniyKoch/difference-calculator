@@ -20,4 +20,4 @@ Section "group2" deleted.
 ```
 ### Видео инструция:
 
-[![asciicast](https://asciinema.org/a/yD2uulPnsY6LeZKl0VPsdW8OJ.svg)](https://asciinema.org/a/yD2uulPnsY6LeZKl0VPsdW8OJ)
+[![asciicast](https://asciinema.org/a/WG5vq8vZK5bEXg0RUq3HPlAef.svg)](https://asciinema.org/a/WG5vq8vZK5bEXg0RUq3HPlAef)
