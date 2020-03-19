@@ -13,10 +13,11 @@ const renderPlainMapping = {
 };
 
 export default (ast) => {
-  const iter = (list, pathList) => list.reduce((acc, node) => {
+  const iter = (list, pathList) => list.map((node) => {
     const path = [...pathList, node.key];
-    return [...acc, renderPlainMapping[node.type](path, node, iter)];
-  }, []);
+
+    return renderPlainMapping[node.type](path, node, iter);
+  });
 
   const result = iter(ast, [])
     .flat(Infinity)

@@ -1,4 +1,4 @@
-import { has } from 'lodash';
+import { has, union, keys } from 'lodash';
 
 const propertyActions = [
   {
@@ -31,9 +31,9 @@ const propertyActions = [
 const getPropertyAction = (data1, data2, key) => propertyActions.find(({ check }) => check(data1, data2, key));
 
 const createAst = (fileBefore = {}, fileAfter = {}) => {
-  const keys = Object.keys({ ...fileBefore, ...fileAfter });
+  const uniqueKeys = union(keys(fileBefore), keys(fileAfter));
 
-  return keys.map((key) => {
+  return uniqueKeys.map((key) => {
     const { type, process } = getPropertyAction(fileBefore, fileAfter, key);
 
     return { key, type, ...process(fileBefore[key], fileAfter[key], createAst) };

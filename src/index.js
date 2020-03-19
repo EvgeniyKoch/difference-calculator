@@ -2,32 +2,30 @@ import fs from 'fs';
 import path from 'path';
 
 import createAst from './crerate-ast';
-import parser from './parser';
-import formattersFactory from './formatters';
+import parse from './parser';
+import getFormatterToDisplayDiff from './formatters';
 
 const readFile = (filename) => {
   const fullPath1 = path.join(__dirname, '..', 'fixtures', filename);
-  try {
-    return fs.readFileSync(fullPath1, 'utf-8');
-  } catch (e) {
-    throw new Error(`Invalid file name \n ${e.message}`);
-  }
+
+  return fs.readFileSync(fullPath1, 'utf-8');
 };
 
 export default (pathToFile1, pathToFile2, format) => {
-  const [ext1, ext2] = [pathToFile1, pathToFile2].map(path.extname);
+  const ext1 = path.extname(pathToFile1);
+  const ext2 = path.extname(pathToFile2);
 
-  const fileBefore = readFile(pathToFile1)
-    |> (_ => parser(_, ext1));
+  const fileDataBefore = readFile(pathToFile1)
+    |> (_ => parse(_, ext1));
 
-  const fileAfter = readFile(pathToFile2)
-    |> (_ => parser(_, ext2));
+  const fileDataAfter = readFile(pathToFile2)
+    |> (_ => parse(_, ext2));
 
-  if (!fileBefore || !fileAfter) {
+  if (!fileDataBefore || !fileDataAfter) {
     throw new Error('There is nothing compare!');
   }
 
-  const ast = createAst(fileBefore, fileAfter);
+  const ast = createAst(fileDataBefore, fileDataAfter);
 
-  return formattersFactory(ast, format);
+  return getFormatterToDisplayDiff(ast, format);
 };
