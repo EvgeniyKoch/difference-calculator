@@ -6,7 +6,7 @@ const stringify = (value, depth = 2) => {
   }
 
   return Object.keys(value)
-    .map(key => `{\n${ident(depth + 2)}${key}: ${value[key]}\n${ident(depth)}}`);
+    .map((key) => `{\n${ident(depth + 2)}${key}: ${value[key]}\n${ident(depth)}}`);
 };
 
 const renderMapping = {
@@ -23,7 +23,7 @@ const renderMapping = {
 
 export default (ast) => {
   const iter = (tree, depth = 1) => (
-    tree.map(node => renderMapping[node.type](node, depth, iter)).join('\n')
+    tree.map((node) => renderMapping[node.type](node, depth, iter)).join('\n')
   );
 
   return `{\n${iter(ast)}\n}\n`;

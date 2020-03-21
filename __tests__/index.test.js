@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import genDiff from '../src';
 
-const getFixturePath = filename => path.join(__dirname, '..', 'fixtures', filename);
-const getExpectedResult = filename => fs.readFileSync(getFixturePath(filename), 'utf8');
+const getFixturePath = (filename) => path.join(__dirname, '..', 'fixtures', filename);
+const getExpectedResult = (filename) => fs.readFileSync(getFixturePath(filename), 'utf8');
 
 const filenames = [
   ['before.json', 'after.json'],
@@ -16,7 +16,10 @@ describe('genDiff:', () => {
     const expectedResult = getExpectedResult('expectObjectViewDifference.txt');
 
     test.each(filenames)('should return a string representation of the file change as an object', (a, b) => {
-      expect(genDiff(a, b, 'default')).toBe(expectedResult);
+      const fullPathBefore = getFixturePath(a);
+      const fullPathAfter = getFixturePath(b);
+
+      expect(genDiff(fullPathBefore, fullPathAfter, 'stringify')).toBe(expectedResult);
     });
   });
 
@@ -24,7 +27,10 @@ describe('genDiff:', () => {
     const expectedResult = getExpectedResult('expectPlain.txt');
 
     test.each(filenames)('should return a string representation of the file change as an string', (a, b) => {
-      expect(genDiff(a, b, 'plain')).toBe(expectedResult);
+      const fullPathBefore = getFixturePath(a);
+      const fullPathAfter = getFixturePath(b);
+
+      expect(genDiff(fullPathBefore, fullPathAfter, 'plain')).toBe(expectedResult);
     });
   });
 });

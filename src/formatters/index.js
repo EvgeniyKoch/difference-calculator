@@ -4,7 +4,7 @@ import renderPlain from './renderPlainOutput';
 const formatter = {
   plain: renderPlain,
   json: JSON.stringify,
-  default: renderDiff,
+  stringify: renderDiff,
 };
 
 export default (ast, format) => formatter[format](ast);

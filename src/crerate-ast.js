@@ -9,7 +9,7 @@ const propertyActions = [
   {
     type: 'unchanged',
     check: (data1, data2, key) => (has(data1, key) && has(data2, key) && (data1[key] === data2[key])),
-    process: value => ({ value }),
+    process: (value) => ({ value }),
   },
   {
     type: 'changed',
@@ -19,7 +19,7 @@ const propertyActions = [
   {
     type: 'removed',
     check: (data1, data2, key) => (has(data1, key) && !has(data2, key)),
-    process: value => ({ value }),
+    process: (value) => ({ value }),
   },
   {
     type: 'added',
@@ -30,13 +30,13 @@ const propertyActions = [
 
 const getPropertyAction = (data1, data2, key) => propertyActions.find(({ check }) => check(data1, data2, key));
 
-const createAst = (fileBefore = {}, fileAfter = {}) => {
-  const uniqueKeys = union(keys(fileBefore), keys(fileAfter));
+const createAst = (fileDataBefore = {}, fileDataAfter = {}) => {
+  const uniqueKeys = union(keys(fileDataBefore), keys(fileDataAfter));
 
   return uniqueKeys.map((key) => {
-    const { type, process } = getPropertyAction(fileBefore, fileAfter, key);
+    const { type, process } = getPropertyAction(fileDataBefore, fileDataAfter, key);
 
-    return { key, type, ...process(fileBefore[key], fileAfter[key], createAst) };
+    return { key, type, ...process(fileDataBefore[key], fileDataAfter[key], createAst) };
   });
 };
 

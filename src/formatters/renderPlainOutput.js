@@ -1,15 +1,15 @@
-const checkValue = val => (val instanceof Object ? '[complex value]' : `'${val}'`);
+const stringifyValue = (val) => (val instanceof Object ? '[complex value]' : `'${val}'`);
 
 const renderPlainMapping = {
   parent: (path, { children }, func) => func(children, path),
-  removed: path => `Property '${path.join('.')}' was deleted`,
-  added: (path, { value }) => `Property '${path.join('.')}' was added with value: ${checkValue(value)}`,
+  removed: (path) => `Property '${path.join('.')}' was deleted`,
+  added: (path, { value }) => `Property '${path.join('.')}' was added with value: ${stringifyValue(value)}`,
   changed: (path, { valueBefore, valueAfter }) => {
-    const before = checkValue(valueBefore);
-    const after = checkValue(valueAfter);
+    const before = stringifyValue(valueBefore);
+    const after = stringifyValue(valueAfter);
     return `Property '${path.join('.')}' was changed from '${before}' to ${after}`;
   },
-  unchanged: () => '',
+  unchanged: () => null,
 };
 
 export default (ast) => {
