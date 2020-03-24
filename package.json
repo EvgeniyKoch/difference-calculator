@@ -1,6 +1,6 @@
 {
   "name": "diffe-calcu",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Difference Calculator",
   "main": "dist/index.js",
   "bin": {
@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hexlet-boilerplates/nodejs-package.git"
+    "url": "git+https://github.com/EvgeniyKoch/frontend-project-lvl2"
   },
   "author": "Kochetov Evgeniy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hexlet-boilerplates/nodejs-package/issues"
+    "url": "https://github.com/EvgeniyKoch/frontend-project-lvl2/issues"
   },
   "jest": {
     "testEnvironment": "node"
@@ -37,7 +37,6 @@
   "homepage": "https://github.com/EvgeniyKoch/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^3.0.0",
-    "esprima": "^4.0.1",
     "ini": "^1.3.5",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",

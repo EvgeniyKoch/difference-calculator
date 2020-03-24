@@ -1,9 +1,11 @@
+import 'source-map-support/register';
 import fs from 'fs';
 import path from 'path';
 
 import createAst from './crerate-ast';
 import parse from './parser';
-import getFormatterToDisplayDiff from './formatters';
+import render from './formatters';
+
 
 export default (pathToFile1, pathToFile2, format) => {
   const ext1 = path.extname(pathToFile1);
@@ -21,5 +23,5 @@ export default (pathToFile1, pathToFile2, format) => {
 
   const ast = createAst(fileDataBefore, fileDataAfter);
 
-  return getFormatterToDisplayDiff(ast, format);
+  return render(ast, format);
 };
