@@ -7,8 +7,8 @@ import parse from './parser';
 import render from './formatters';
 
 export default (pathToFile1, pathToFile2, format) => {
-  const ext1 = path.extname(pathToFile1);
-  const ext2 = path.extname(pathToFile2);
+  const ext1 = path.extname(pathToFile1).slice(1);
+  const ext2 = path.extname(pathToFile2).slice(1);
 
   const fileDataBefore = fs.readFileSync(pathToFile1, 'utf8')
     |> ((_) => parse(_, ext1));

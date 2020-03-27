@@ -30,7 +30,7 @@ const propertyActions = [
 
 const getPropertyAction = (data1, data2, key) => propertyActions.find(({ check }) => check(data1, data2, key));
 
-const createAst = (fileDataBefore = {}, fileDataAfter = {}) => {
+const createAst = (fileDataBefore, fileDataAfter) => {
   const uniqueKeys = union(keys(fileDataBefore), keys(fileDataAfter));
 
   return uniqueKeys.map((key) => {
