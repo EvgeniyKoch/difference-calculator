@@ -10,11 +10,11 @@ export default (pathToFile1, pathToFile2, format) => {
   const typeData1 = path.extname(pathToFile1).slice(1);
   const typeData2 = path.extname(pathToFile2).slice(1);
 
-  const fileDataBefore = fs.readFileSync(pathToFile1, 'utf8')
-    |> ((_) => parse(_, typeData1));
+  const data1 = fs.readFileSync(pathToFile1, 'utf8');
+  const fileDataBefore = parse(data1, typeData1);
 
-  const fileDataAfter = fs.readFileSync(pathToFile2, 'utf8')
-    |> ((_) => parse(_, typeData2));
+  const data2 = fs.readFileSync(pathToFile2, 'utf8');
+  const fileDataAfter = parse(data2, typeData2);
 
   if (!fileDataBefore || !fileDataAfter) {
     throw new Error('There is nothing compare!');
